@@ -6,7 +6,8 @@ use std::env;
 use std::fs::{create_dir_all, File};
 use std::io::prelude::*;
 
-pub fn vd_process(dir_name: &String) -> Result<(), ffmpeg::Error> {
+pub fn vd_process(dir_name: &str) -> Result<(), ffmpeg::Error> {
+    ffmpeg::init().unwrap();
     if let Ok(mut ictx) = input(&env::args().nth(1).expect("Cannot open file.")) {
         let input = ictx
             .streams()
@@ -56,7 +57,7 @@ pub fn vd_process(dir_name: &String) -> Result<(), ffmpeg::Error> {
 fn save_file(
     frame: &Video,
     index: usize,
-    dir_name: &String,
+    dir_name: &str,
 ) -> std::result::Result<(), std::io::Error> {
     create_dir_all(dir_name)?;
     let mut file = File::create(format!("{}/frame{}.png", dir_name, index))?;

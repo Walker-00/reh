@@ -1,40 +1,29 @@
 extern crate ffmpeg_next as ffmpeg;
 
+mod process_file;
 mod process_vd;
 
 use base64::engine::general_purpose;
 use base64::prelude::*;
 use directories_next::BaseDirs;
+use process_file::exists_count;
 use process_vd::vd_process;
-use std::path::Path;
-use std::{env, fs};
+use std::env;
+use std::path::PathBuf;
 
 fn main() -> std::io::Result<()> {
-    ffmpeg::init().unwrap();
-
     let base_dirs = BaseDirs::new().unwrap();
-    let cache_dir = base_dirs.cache_dir().to_str().unwrap().to_string();
+    let cache_dir = base_dirs.cache_dir();
 
-    let dir_name = &format!(
-        "{}/walker/{}",
-        cache_dir,
+    let dir_name = cache_dir.join(PathBuf::from(format!(
+        "walker/{}",
         general_purpose::STANDARD_NO_PAD.encode(env::args().nth(1).expect("Can't"))
-    );
+    )));
+    let dir_name: &str = dir_name.to_str().unwrap();
 
-    if Path::new(dir_name).exists() {
-        println!("exists");
-        let mut count = 0;
-        for entry in fs::read_dir(dir_name)? {
-            let entry = entry?;
-            let file_type = entry.file_type()?;
-            if file_type.is_file() {
-                count += 1;
-            }
-        }
-        println!("{count}");
-        std::process::exit(1);
-    } else {
-        vd_process(dir_name)?;
+    match exists_count(dir_name) {
+        Some(total_imgs) => println!("{total_imgs}"),
+        None => vd_process(dir_name).unwrap(),
     }
 
     Ok(())
