@@ -56,7 +56,6 @@ pub struct Config {
 
 fn main() -> std::io::Result<()> {
     let args = Config::parse();
-    println!("{}", args.loopit);
     let base_dirs = BaseDirs::new().unwrap();
     let cache_dir = base_dirs.cache_dir();
     let match_modes = match args.mode {
