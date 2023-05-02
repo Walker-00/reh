@@ -33,7 +33,7 @@ pub enum ModeConf {
 
 #[derive(Parser, Debug)]
 #[command(
-    author = "walker",
+    author = "Linus Walker",
     version = "0.1.0",
     long_about = "Video to live wallpaper for x86_64 linux"
 )]
@@ -68,7 +68,7 @@ fn main() -> std::io::Result<()> {
     };
 
     let dir_name_path = cache_dir.join(PathBuf::from(format!(
-        "walker/{}",
+        "reh/{}",
         general_purpose::STANDARD_NO_PAD.encode(args.file)
     )));
     let dir_name: &str = dir_name_path.to_str().unwrap();
