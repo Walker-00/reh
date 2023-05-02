@@ -8,6 +8,7 @@ use std::io::prelude::*;
 
 pub fn vd_process(dir_name: &str) -> Result<(), ffmpeg::Error> {
     ffmpeg::init().unwrap();
+    eprintln!("Processing Video....\nThis Might Take a several minutes.\ndepending on your video's duration.");
     if let Ok(mut ictx) = input(&env::args().nth(1).expect("Cannot open file.")) {
         let input = ictx
             .streams()

@@ -44,9 +44,9 @@ pub struct Config {
         short,
         long,
         default_value_t = 0,
-        help = "duration time as millisecond to set frame wallpaper"
+        help = "sleep time per one frame as millisecond to set frame wallpaper"
     )]
-    duration: u64,
+    sleep: u64,
     #[arg(short, long = "loop", help = "loop the wallpaper video")]
     loopit: bool,
     /// Choose Mode to set wallpaper
@@ -78,7 +78,7 @@ fn main() -> std::io::Result<()> {
             &dir_name_path,
             total_imgs,
             match_modes,
-            args.duration,
+            args.sleep,
             args.loopit,
         )
         .unwrap(),
