@@ -14,10 +14,9 @@ use process_wallpaper::set_wallpaper;
 use std::path::PathBuf;
 use wallpaper::Mode;
 
-#[derive(ValueEnum, Debug, Clone, Copy, Default)]
+#[derive(ValueEnum, Debug, Clone, Copy)]
 pub enum ModeConf {
-    #[default]
-    /// Fit Mode [Default]
+    /// Fit Mode {Default}
     Fit,
     /// Crop Mode
     Crop,
@@ -50,7 +49,7 @@ pub struct Config {
     #[arg(short, long = "loop", help = "loop the wallpaper video")]
     loopit: bool,
     /// Choose Mode to set wallpaper
-    #[arg(value_enum)]
+    #[arg(value_enum, default_value_t = ModeConf::Fit)]
     mode: ModeConf,
 }
 
@@ -89,7 +88,7 @@ fn main() -> std::io::Result<()> {
                     &dir_name_path,
                     total_imgs,
                     match_modes,
-                    args.duration,
+                    args.sleep,
                     args.loopit,
                 )
                 .unwrap(),
