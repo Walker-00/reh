@@ -391,19 +391,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "ffmpeg_test"
-version = "0.1.0"
-dependencies = [
- "base64 0.21.0",
- "clap",
- "directories-next",
- "ffmpeg-next",
- "mime",
- "mime_guess",
- "wallpaper",
-]
-
-[[package]]
 name = "getrandom"
 version = "0.1.16"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -785,6 +772,19 @@ name = "regex-syntax"
 version = "0.7.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a5996294f19bd3aae0453a862ad728f60e6600695733dd5df01da90c54363a3c"
+
+[[package]]
+name = "reh"
+version = "0.1.0"
+dependencies = [
+ "base64 0.21.0",
+ "clap",
+ "directories-next",
+ "ffmpeg-next",
+ "mime",
+ "mime_guess",
+ "wallpaper",
+]
 
 [[package]]
 name = "rust-argon2"
