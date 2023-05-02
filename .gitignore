@@ -1,1 +1,5 @@
 /target
+**/*.rs.bak
+**/*.rs.bk
+**/*.*.bak
+**/*.*.bk
