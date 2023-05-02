@@ -7,5 +7,7 @@ edition = "2021"
 
 [dependencies]
 base64 = "0.21.0"
+clap = { version = "4.2.5", features = ["derive"] }
 directories-next = "2.0.0"
 ffmpeg-next = { version = "6.0.0", features = ["image"] }
+wallpaper = "3.2.0"
