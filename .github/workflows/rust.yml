@@ -16,6 +16,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: Install Required Packages
+      run: sudo apt-get install libavutil-dev -y
     - name: Run Check
       run: cargo check
     - name: Run Build
