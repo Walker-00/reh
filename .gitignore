@@ -5,3 +5,4 @@
 **/*.*.bk
 *.zst
 /pkg
+/Cargo.lock
